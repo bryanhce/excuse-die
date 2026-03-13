@@ -6,6 +6,8 @@ export interface Excuse {
     elabText: ReactNode;
 }
 
+// TODO: add some validation to the dieText, need to be at least 1 word and max of 6 words
+
 export const EXCUSES: Excuse[] = [
     {
         id: 1,
