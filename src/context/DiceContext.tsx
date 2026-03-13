@@ -19,6 +19,9 @@ export const DiceProvider = ({ children }: { children: ReactNode }) => {
     const [isMuted, setIsMuted] = useState(false);
     const isRollingRef = useRef(false);
 
+    // TODO check if there is a way to mute without, then
+    // can remove the isMute checked in handleRoll and
+    // remove dep in useHotKeyRoll.ts
     const [playRoll] = useSound("/rolling-sound.mp3", {
         soundEnabled: !isMuted,
     });

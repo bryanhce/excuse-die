@@ -1,53 +1,34 @@
 import { useEffect, useState, useMemo } from "react";
 import { useDice } from "../context/DiceContext";
 import { EXCUSES } from "./Excuses";
+import Face from "./Face";
+import ToolTip from "./ToolTip";
+import useHotKeyRoll from "../hooks/useHotKeyRoll";
 
 const Die = () => {
     const { isRolling, excuse, handleRoll, roll } = useDice();
-    const [showTooltip, setShowTooltip] = useState(false);
+    useHotKeyRoll(handleRoll);
 
     // 3D rotation state
     const [rotX, setRotX] = useState(0);
     const [rotY, setRotY] = useState(0);
     const [rotZ, setRotZ] = useState(0);
 
-    // Generate the 6 faces. The 1st face is the target excuse.
+    // Generate the 6 faces
+    // useMemo to prevent faces from regenerating when rotXYZ are updated
     const faces = useMemo(() => {
         const others = [...EXCUSES].sort(() => 0.5 - Math.random());
         const filteredOthers = others.filter((e) => e.id !== excuse.id);
 
         return [
             excuse, // Front (target)
-            filteredOthers[0] || others[0], // Back
-            filteredOthers[1] || others[1], // Right
-            filteredOthers[2] || others[2], // Left
-            filteredOthers[3] || others[3], // Top
-            filteredOthers[4] || others[4], // Bottom
+            filteredOthers[0], // Back
+            filteredOthers[1], // Right
+            filteredOthers[2], // Left
+            filteredOthers[3], // Top
+            filteredOthers[4], // Bottom
         ];
     }, [roll, excuse.id]);
-
-    // TODO might shift this into a hook
-    useEffect(() => {
-        const handleKeyDown = (event: KeyboardEvent) => {
-            if (event.code === "Space" || event.code === "Enter") {
-                event.preventDefault();
-                handleRoll();
-            }
-        };
-        window.addEventListener("keydown", handleKeyDown);
-        return () => window.removeEventListener("keydown", handleKeyDown);
-    }, []);
-
-    // Show tooltip 5s after a roll finishes
-    useEffect(() => {
-        if (isRolling) {
-            setShowTooltip(false);
-            return;
-        }
-
-        const timer = setTimeout(() => setShowTooltip(true), 5000);
-        return () => clearTimeout(timer);
-    }, [isRolling]);
 
     // Handle the 3D roll animation
     useEffect(() => {
@@ -70,25 +51,11 @@ const Die = () => {
     }, [isRolling]);
 
     const faceBaseClass =
-        "absolute inset-0 backface-hidden flex items-center justify-center bg-alabaster rounded-3xl border-10 border-charcoal text-ochre text-[3rem] font-black p-10 text-center shadow-[inset_0_0_20px_rgba(0,0,0,0.05)]";
+        "absolute inset-0 backface-hidden flex items-center justify-center bg-alabaster rounded-3xl border-10 border-charcoal p-10 text-center shadow-[inset_0_0_20px_rgba(0,0,0,0.05)]";
 
     return (
         <div className="relative flex flex-col items-center">
-            {/* TODO shift this into its own component */}
-            {/* Tooltip */}
-            <div
-                className={`absolute -top-24 transition-all duration-500 z-10 ${
-                    showTooltip
-                        ? "opacity-100 animate-bounce-tooltip"
-                        : "opacity-0 pointer-events-none"
-                }`}
-            >
-                <div className="bg-charcoal text-alabaster text-l font-medium px-4 py-2 rounded-2xl shadow-md whitespace-nowrap">
-                    Click to roll!
-                    {/* Caret */}
-                    <div className="absolute left-1/2 -translate-x-1/2 -bottom-[6px] w-0 h-0 border-l-[7px] border-r-[7px] border-t-[7px] border-l-transparent border-r-transparent border-t-charcoal" />
-                </div>
-            </div>
+            <ToolTip />
 
             {/* Die */}
             <div
@@ -102,14 +69,12 @@ const Die = () => {
                         transform: `rotateX(${rotX}deg) rotateY(${rotY}deg) rotateZ(${rotZ}deg)`,
                     }}
                 >
-                    {/* Front Face (Winner) */}
+                    {/* Front Face (Final excuse) */}
                     <div
                         className={`${faceBaseClass}`}
                         style={{ transform: "translateZ(calc(var(--cube-size, 320px) / 2))" }}
                     >
-                        <div className="w-full h-full flex items-center justify-center drop-shadow-sm">
-                            {faces[0].dieText}
-                        </div>
+                        <Face text={faces[0].dieText} />
                     </div>
 
                     {/* Back Face */}
@@ -120,9 +85,7 @@ const Die = () => {
                                 "rotateY(180deg) translateZ(calc(var(--cube-size, 320px) / 2))",
                         }}
                     >
-                        <div className="w-full h-full flex items-center justify-center drop-shadow-sm">
-                            {faces[1].dieText}
-                        </div>
+                        <Face text={faces[1].dieText} />
                     </div>
 
                     {/* Right Face */}
@@ -133,9 +96,7 @@ const Die = () => {
                                 "rotateY(90deg) translateZ(calc(var(--cube-size, 320px) / 2))",
                         }}
                     >
-                        <div className="w-full h-full flex items-center justify-center drop-shadow-sm">
-                            {faces[2].dieText}
-                        </div>
+                        <Face text={faces[2].dieText} />
                     </div>
 
                     {/* Left Face */}
@@ -146,9 +107,7 @@ const Die = () => {
                                 "rotateY(-90deg) translateZ(calc(var(--cube-size, 320px) / 2))",
                         }}
                     >
-                        <div className="w-full h-full flex items-center justify-center drop-shadow-sm">
-                            {faces[3].dieText}
-                        </div>
+                        <Face text={faces[3].dieText} />
                     </div>
 
                     {/* Top Face */}
@@ -159,9 +118,7 @@ const Die = () => {
                                 "rotateX(90deg) translateZ(calc(var(--cube-size, 320px) / 2))",
                         }}
                     >
-                        <div className="w-full h-full flex items-center justify-center drop-shadow-sm">
-                            {faces[4].dieText}
-                        </div>
+                        <Face text={faces[4].dieText} />
                     </div>
 
                     {/* Bottom Face */}
@@ -172,9 +129,7 @@ const Die = () => {
                                 "rotateX(-90deg) translateZ(calc(var(--cube-size, 320px) / 2))",
                         }}
                     >
-                        <div className="w-full h-full flex items-center justify-center drop-shadow-sm">
-                            {faces[5].dieText}
-                        </div>
+                        <Face text={faces[5].dieText} />
                     </div>
                 </div>
             </div>

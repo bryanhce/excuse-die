@@ -1,7 +1,7 @@
 import { useDice } from "../context/DiceContext";
 
 const InfoPanel = () => {
-    const { excuse, isRolling} = useDice();
+    const { excuse, isRolling } = useDice();
 
     return (
         <div className="w-full h-full bg-sand p-8 border-t md:border-t-0 md:border-l border-black/5 overflow-y-auto flex flex-col gap-6">
