@@ -13,7 +13,7 @@ export const EXCUSES: Excuse[] = [
         // landing excuse
         id: 0,
         dieText: "Generate your next Excuse!",
-        elabText: "Up your Excuse game and escape your next obligation"
+        elabText: "Up your Excuse game and escape your next obligation with ease",
     },
     {
         id: 1,

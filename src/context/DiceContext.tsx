@@ -33,7 +33,8 @@ export const DiceProvider = ({ children }: { children: ReactNode }) => {
         isRollingRef.current = true;
         setIsRolling(true);
 
-        const newRoll = Math.floor(Math.random() * MAX_FACES) + 1;
+        // chose max to prevent landing excuse to be shown
+        const newRoll = Math.max(2, Math.floor(Math.random() * MAX_FACES) + 1);
         setRoll(newRoll);
 
         if (!isMuted) {
