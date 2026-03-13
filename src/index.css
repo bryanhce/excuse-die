@@ -71,7 +71,7 @@ html {
 
 .preserve-3d {
     transform-style: preserve-3d;
-    --cube-size: 230px;
+    --cube-size: 225px;
 }
 
 @media (min-width: 768px) {
