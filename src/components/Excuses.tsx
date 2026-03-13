@@ -10,6 +10,12 @@ export interface Excuse {
 
 export const EXCUSES: Excuse[] = [
     {
+        // landing excuse
+        id: 0,
+        dieText: "Generate your next Excuse!",
+        elabText: "Up your Excuse game and escape your next obligation"
+    },
+    {
         id: 1,
         dieText: "Dog's birthday",
         elabText: (
