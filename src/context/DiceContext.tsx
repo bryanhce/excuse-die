@@ -14,7 +14,7 @@ interface DiceContextType {
 const DiceContext = createContext<DiceContextType | null>(null);
 
 export const DiceProvider = ({ children }: { children: ReactNode }) => {
-    const [roll, setRoll] = useState(1);
+    const [roll, setRoll] = useState(2);
     const [isRolling, setIsRolling] = useState(false);
     const [isMuted, setIsMuted] = useState(false);
     const isRollingRef = useRef(false);

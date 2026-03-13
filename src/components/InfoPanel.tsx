@@ -42,7 +42,7 @@ const InfoPanel = () => {
             </div>
 
             <div className="text-sm text-charcoal leading-relaxed min-h-20">
-                <strong>Followup Elaborations</strong>
+                <strong>Possible Followups</strong>
                 <br />
                 <AnimatePresence mode="wait">
                     <motion.div
@@ -58,8 +58,6 @@ const InfoPanel = () => {
                     </motion.div>
                 </AnimatePresence>
             </div>
-
-            <hr className="border-charcoal/10" />
         </div>
     );
 };
