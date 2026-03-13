@@ -30,16 +30,17 @@ export const DiceProvider = ({ children }: { children: ReactNode }) => {
         isRollingRef.current = true;
         setIsRolling(true);
 
+        const newRoll = Math.floor(Math.random() * MAX_FACES) + 1;
+        
         if (!isMuted) {
             playRoll();
         }
-
+        
         setTimeout(() => {
-            const newRoll = Math.floor(Math.random() * MAX_FACES) + 1;
             setRoll(newRoll);
             setIsRolling(false);
             isRollingRef.current = false;
-        }, 500);
+        }, 2000);
     };
 
     return (

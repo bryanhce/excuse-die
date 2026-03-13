@@ -71,6 +71,13 @@ html {
 
 .preserve-3d {
     transform-style: preserve-3d;
+    --cube-size: 320px;
+}
+
+@media (min-width: 768px) {
+    .preserve-3d {
+        --cube-size: 416px;
+    }
 }
 
 .backface-hidden {
