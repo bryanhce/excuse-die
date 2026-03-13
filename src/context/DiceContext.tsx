@@ -14,12 +14,12 @@ interface DiceContextType {
 const DiceContext = createContext<DiceContextType | null>(null);
 
 export const DiceProvider = ({ children }: { children: ReactNode }) => {
-    const [roll, setRoll] = useState(2);
+    const [roll, setRoll] = useState(1); // 1 is defualt landing
     const [isRolling, setIsRolling] = useState(false);
     const [isMuted, setIsMuted] = useState(false);
     const isRollingRef = useRef(false);
 
-    // TODO check if there is a way to mute without, then
+    // TODO check if there is a way to mute without updating playRoll, then
     // can remove the isMute checked in handleRoll and
     // remove dep in useHotKeyRoll.ts
     const [playRoll] = useSound("/rolling-sound.mp3", {
@@ -35,12 +35,15 @@ export const DiceProvider = ({ children }: { children: ReactNode }) => {
 
         // chose max to prevent landing excuse to be shown
         const newRoll = Math.max(2, Math.floor(Math.random() * MAX_FACES) + 1);
-        setRoll(newRoll);
-
+        // add timeout here so newRoll data isnt seen immediately when user rolls
+        setTimeout(() => {
+            setRoll(newRoll);
+        }, 1000)
+        
         if (!isMuted) {
             playRoll();
         }
-
+        
         setTimeout(() => {
             setIsRolling(false);
             isRollingRef.current = false;
