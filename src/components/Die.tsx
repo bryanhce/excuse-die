@@ -59,7 +59,7 @@ const Die = () => {
 
             {/* Die */}
             <div
-                className="perspective-1200 h-80 w-80 md:h-104 md:w-104 cursor-pointer"
+                className="perspective-1200 h-60 w-60 md:h-104 md:w-104 cursor-pointer"
                 onClick={handleRoll}
             >
                 {/* 3D Cube Container */}

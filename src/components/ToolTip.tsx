@@ -19,7 +19,7 @@ const ToolTip = () => {
 
     return (
         <div
-            className={`absolute -top-24 transition-all duration-500 z-10 ${
+            className={`absolute -top-20 md:-top-24 transition-all duration-500 z-10 ${
                 showTooltip ? "opacity-100 animate-bounce-tooltip" : "opacity-0 pointer-events-none"
             }`}
         >

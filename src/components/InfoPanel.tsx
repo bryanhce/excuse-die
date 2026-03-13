@@ -19,7 +19,7 @@ const InfoPanel = () => {
             </div>
 
             <p className="text-sm text-charcoal leading-relaxed">
-                <strong>Folowup Elaborations</strong>
+                <strong>Followup Elaborations</strong>
                 <br />
                 {isRolling ? "" : excuse.elabText}
             </p>
