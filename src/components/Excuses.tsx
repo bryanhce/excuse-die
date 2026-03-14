@@ -112,8 +112,8 @@ export const EXCUSES: Excuse[] = [
         elabText: (
             <ListContainer>
                 <li>
-                    I suddenly realized that time is merely a construct. Therefore, the 10am sync
-                    is also a construct.
+                    I suddenly realized that time is merely a construct. Therefore, the 10am sync is
+                    also a construct.
                 </li>
                 <li>
                     Why do we even build software when the universe is headed towards inevitable
@@ -162,8 +162,8 @@ export const EXCUSES: Excuse[] = [
                     a rope and some snacks.
                 </li>
                 <li>
-                    It's deeper than it looks. I think I see the Mole People 👷‍♂️🕳️. We're forming a union
-                    down here.
+                    It's deeper than it looks. I think I see the Mole People 👷‍♂️🕳️. We're forming a
+                    union down here.
                 </li>
             </ListContainer>
         ),
@@ -329,9 +329,7 @@ export const EXCUSES: Excuse[] = [
                     I pressed the button for the lobby, but the elevator decided to trap me between
                     floors 3 and 4.
                 </li>
-                <li>
-                    The firemen are on their way but they seem to be stuck in traffic...
-                </li>
+                <li>The firemen are on their way but they seem to be stuck in traffic...</li>
             </ListContainer>
         ),
     },
@@ -415,8 +413,8 @@ export const EXCUSES: Excuse[] = [
         elabText: (
             <ListContainer>
                 <li>
-                    A BTS JungKook urgently needed my help. I am currently untangling my
-                    compromised bank accounts.
+                    A BTS JungKook urgently needed my help. I am currently untangling my compromised
+                    bank accounts.
                 </li>
                 <li>
                     Look, the email looked <strong>very</strong> professional. I thought it was an

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDice } from "../context/DiceContext";
+import { useDice } from "../context/useDice";
 
 const ToolTip = () => {
     const { isRolling } = useDice();

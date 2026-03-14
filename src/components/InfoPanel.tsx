@@ -1,4 +1,4 @@
-import { useDice } from "../context/DiceContext";
+import { useDice } from "../context/useDice";
 import { motion, AnimatePresence } from "framer-motion";
 
 const InfoPanel = () => {
@@ -42,8 +42,8 @@ const InfoPanel = () => {
             </div>
 
             <div className="text-sm text-charcoal leading-relaxed min-h-20">
-                <strong>Possible Followups</strong>
-                <br />
+                <strong>Possible Follow-ups</strong>
+                <hr className="border-charcoal/10 my-3" />
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={isRolling ? "rolling-elab" : excuse.id}

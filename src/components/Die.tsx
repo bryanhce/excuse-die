@@ -1,5 +1,5 @@
-import { useEffect, useState, useMemo } from "react";
-import { useDice } from "../context/DiceContext";
+import { useEffect, useMemo, useState } from "react";
+import { useDice } from "../context/useDice";
 import { EXCUSES } from "./Excuses";
 import Face from "./Face";
 import ToolTip from "./ToolTip";

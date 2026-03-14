@@ -1,5 +1,5 @@
 import { IconVolume, IconVolume3 } from "@tabler/icons-react";
-import { useDice } from "../context/DiceContext";
+import { useDice } from "../context/useDice";
 
 const AudioButton = () => {
     const { isMuted, setIsMuted } = useDice();

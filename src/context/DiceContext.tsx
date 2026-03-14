@@ -1,20 +1,10 @@
-import { createContext, useContext, useRef, useState, type ReactNode } from "react";
+import { useRef, useState, type ReactNode } from "react";
 import useSound from "use-sound";
-import { EXCUSES, MAX_FACES, type Excuse } from "../components/Excuses";
-
-interface DiceContextType {
-    roll: number;
-    isRolling: boolean;
-    excuse: Excuse;
-    isMuted: boolean;
-    setIsMuted: (muted: boolean) => void;
-    handleRoll: () => void;
-}
-
-const DiceContext = createContext<DiceContextType | null>(null);
+import { EXCUSES, MAX_FACES } from "../components/Excuses";
+import { DiceContext } from "./DiceContextDef";
 
 export const DiceProvider = ({ children }: { children: ReactNode }) => {
-    const [roll, setRoll] = useState(1); // 1 is defualt landing
+    const [roll, setRoll] = useState(1); // 1 is default landing
     const [isRolling, setIsRolling] = useState(false);
     const [isMuted, setIsMuted] = useState(false);
     const isRollingRef = useRef(false);
@@ -26,7 +16,7 @@ export const DiceProvider = ({ children }: { children: ReactNode }) => {
         soundEnabled: !isMuted,
     });
 
-    const excuse: Excuse = EXCUSES[roll - 1];
+    const excuse = EXCUSES[roll - 1];
 
     const handleRoll = () => {
         if (isRollingRef.current) return;
@@ -55,10 +45,4 @@ export const DiceProvider = ({ children }: { children: ReactNode }) => {
             {children}
         </DiceContext.Provider>
     );
-};
-
-export const useDice = (): DiceContextType => {
-    const ctx = useContext(DiceContext);
-    if (!ctx) throw new Error("useDice must be used within a DiceProvider");
-    return ctx;
 };
