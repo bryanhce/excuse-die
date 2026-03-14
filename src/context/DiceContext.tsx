@@ -38,12 +38,12 @@ export const DiceProvider = ({ children }: { children: ReactNode }) => {
         // add timeout here so newRoll data isnt seen immediately when user rolls
         setTimeout(() => {
             setRoll(newRoll);
-        }, 1000)
-        
+        }, 1000);
+
         if (!isMuted) {
             playRoll();
         }
-        
+
         setTimeout(() => {
             setIsRolling(false);
             isRollingRef.current = false;
